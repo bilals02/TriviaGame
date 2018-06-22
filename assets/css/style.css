@@ -1,0 +1,9 @@
+body {
+    background-image: url("../images/theater.jpg");
+}
+
+
+#h2Caption {
+    text-align: center;
+    visibility: hidden;
+}
