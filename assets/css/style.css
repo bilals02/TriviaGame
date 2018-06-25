@@ -2,8 +2,29 @@ body {
     background-image: url("../images/theater.jpg");
 }
 
+#mainJumbotron {
+    width: 800px; 
+    height: 650px;
+    margin-right: auto; 
+    margin-left: auto;
+}
+
 
 #h2Caption {
     text-align: center;
     visibility: hidden;
+}
+
+#runningTimer {
+    text-align: center;
+}
+
+#divStartGame{
+    text-align: center;
+}
+
+#submitDiv {
+    text-align: center;
+    visibility: hidden;
+
 }

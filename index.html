@@ -12,13 +12,19 @@
 <body>
 
     <div class="container-fluid">
-        <div class="jumbotron jumbotron-fluid" style="width:500px; margin-right: auto; margin-left: auto;">
+        <div id="mainJumbotron" class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1 class="display-4" style="font-weight: bold; text-align: center;">Movie Trivia</h1>
-                <h2 id="h2Caption" class="display-4">Answer the following questions:</h2>
+                <div id="runningTimer"></div>                
                 <hr>
-                <button id="btnTrivia">Start Trivia</button>
-                <p class="lead"></p>
+                <div id="questionsList"></div>
+                <div id="divStartGame">
+                    <button id="btnTrivia">Start Trivia</button>
+                </div>
+                <div id="submitDiv">
+                    <br>
+                    <button class="btnSubmit">Submit</button>
+                </div>
             </div>
         </div>
     </div>
