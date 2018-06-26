@@ -39,21 +39,20 @@ function countdown() {
   $("#btnTrivia").hide();
 }
 
-//Show questions on div
 function showQuestions(){
   //Increase height of main jumbotron
   $("#mainJumbotron").height = "900px";
 
   
   for (i = 0; i < 5; i++){
-    console.log(triviaQuestions[i].question);
+    //console.log(triviaQuestions[i].question);
     $("#questionsList").append("<p>");
     $("#questionsList").append((i + 1)+ ". " + triviaQuestions[i].question);
     $("#questionsList").append("<p>");
 
       //Add answers
       for (j = 0; j < 4; j++){
-      $("#questionsList").append("<input type=radio name=answer> &nbsp;")
+      $("#questionsList").append("<input type='radio' name='myRadio"+(i+1)+"'>");
       $("#questionsList").append(triviaQuestions[i].answerList[j]);
       $("#questionsList").append("&nbsp;")
       }
@@ -62,13 +61,21 @@ function showQuestions(){
 
 }
 
+function checkAnswers(){
+
+  $("#questionsList").html($("input:checked" ).val() + " is checked!" );
+
+
+
+  
+}
+
 function startTriviaGame(){
 
     //show Trivia Page 2
     $("#h2Caption").visibility = "visible";
 
     //Show Submit Button
-    $("#btnSubmit").visibility  = "visible";
 
     //Show Timer
     countdown();
@@ -79,3 +86,5 @@ function startTriviaGame(){
 
 //Start Trivia
 document.getElementById("btnTrivia").addEventListener("click", startTriviaGame);
+document.getElementById("btnSubmit").addEventListener("click", checkAnswers);
+
