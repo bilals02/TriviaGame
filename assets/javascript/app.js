@@ -22,22 +22,6 @@ var triviaQuestions = [{
 }];
 
 
-//30 second timer for trivia
-function countdown() {
-  var timeLeft = 30;
-  var elem = document.getElementById('runningTimer');
-  var timerId = setInterval(countdown, 1000);
-
-  if (timeLeft == 0) {
-    clearTimeout(timerId);
-  } else {
-    elem.innerHTML = timeLeft + ' seconds remaining to answer all questions below:';
-    timeLeft--;
-  }
-
-  //Hide Start Button
-  $("#btnTrivia").hide();
-}
 
 function showQuestions(){
   //Increase height of main jumbotron
@@ -52,7 +36,7 @@ function showQuestions(){
 
       //Add answers
       for (j = 0; j < 4; j++){
-      $("#questionsList").append("<input type='radio' name='myRadio"+(i+1)+"'>");
+      $("#questionsList").append("<input type='radio' class='clsanswers' value='" + triviaQuestions[i].answerList[j] + "' name='myRadio"+(i+1)+" '>");
       $("#questionsList").append(triviaQuestions[i].answerList[j]);
       $("#questionsList").append("&nbsp;")
       }
@@ -62,27 +46,102 @@ function showQuestions(){
 }
 
 function checkAnswers(){
+  var arrAnswers = document.getElementsByClassName("clsanswers");
+  var Q1,Q2,Q3,Q4,Q5;
 
-  $("#questionsList").html($("input:checked" ).val() + " is checked!" );
+  $("#submitDiv").hide();
 
 
+  if (arrAnswers[2].checked){
+    Q1="Question 1: Correct";
+  }else{
+    Q1="Question 1: Incorrect, the correct answer is 'Bride of Frankenstein'";
+  }
+  if (arrAnswers[7].checked) {
+    Q2 = "Question 2: Correct";
+  }else {
+    Q2="Question 2: Incorrect, the correct answer is 'Psycho";
+  } 
+  if (arrAnswers[8].checked) {
+    Q3 = "Question 3: Correct";
+  } else {
+    Q3="Question 3: Incorrect, the correct answer is 'Loelia Ponsonby";
+  }
+  if (arrAnswers[15].checked) {
+    Q4 = "Question 4: Correct";
+  } else {
+    Q4="Question 4: Incorrect, the correct answer is 'Palpatine";
+  }
+  if (arrAnswers[16].checked) {
+    Q5 = "Question 5: Correct";
+  } else {
+    Q5="Question 5: Incorrect, the correct answer is 'Silence of the lambs";
+  }
 
-  
+  console.log(Q1, Q2, Q3, Q4, Q5);
+
+  $("#questionsList").html("<p>" + Q1 + "<p>" + Q2 + "<p>" + Q3 + "<p>"+ Q4 + "<p>" + Q5 + "<p>" + "</p>");
+
 }
 
 function startTriviaGame(){
 
     //show Trivia Page 2
-    $("#h2Caption").visibility = "visible";
+    //$("#h2Caption").visibility = "visible";
 
     //Show Submit Button
+    $("#submitDiv").show();
+
+    //Hide Start Button
+    $("#btnTrivia").hide();
 
     //Show Timer
-    countdown();
+    run();
 
     //Show Questions
     showQuestions();
 }
+
+var number = 30;
+var intervalId;
+
+function run() {
+  clearInterval(intervalId);
+  intervalId = setInterval(decrement, 1000);
+}
+
+//  The decrement function.
+function decrement() {
+
+  //  Decrease number by one.
+  number--;
+
+  //  Show the number in the #show-number tag.
+  $("#runningTimer").html("<h2>" + number + " seconds remaining</h2>");
+
+  //  Once number hits zero...
+  if (number === 0) {
+    stop();
+    alert("Your time is up!");
+    checkAnswers();
+
+  }
+}
+
+  //  The stop function
+  function stop() {
+
+    //  Clears our intervalId
+    //  We just pass the name of the interval
+    //  to the clearInterval function.
+    clearInterval(intervalId);
+  }
+
+
+
+
+
+$("#submitDiv").hide();
 
 //Start Trivia
 document.getElementById("btnTrivia").addEventListener("click", startTriviaGame);

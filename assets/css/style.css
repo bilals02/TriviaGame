@@ -4,7 +4,7 @@ body {
 
 #mainJumbotron {
     width: 800px; 
-    height: 650px;
+    height: 670px;
     margin-right: auto; 
     margin-left: auto;
 }
@@ -13,6 +13,7 @@ body {
 #h2Caption {
     text-align: center;
     visibility: hidden;
+
 }
 
 #runningTimer {
