@@ -20,7 +20,36 @@ var triviaQuestions = [{
   answerList: ["Silence of the lambs", "Lord of the Rings", "Fifty Shades Darker", "Resident Evil"],
   answer: 0
 }];
+var number = 30;
+var intervalId;
 
+function run() {
+  clearInterval(intervalId);
+  intervalId = setInterval(decrement, 1000);
+}
+
+//  The decrement function.
+function decrement() {
+
+  //  Decrease number by one.
+  number--;
+
+  //  Show the number in the #show-number tag.
+  $("#runningTimer").html("<h2>" + number + " seconds remaining...</h2>");
+
+  //  Once number hits zero...
+  if (number === 0) {
+    stop();
+    alert("Your time is up!");
+    checkAnswers();
+
+  }
+}
+
+  //  The stop function
+  function stop() {
+    clearInterval(intervalId);
+  }
 
 
 function showQuestions(){
@@ -49,8 +78,12 @@ function checkAnswers(){
   var arrAnswers = document.getElementsByClassName("clsanswers");
   var Q1,Q2,Q3,Q4,Q5;
 
+  //Hide submit button
   $("#submitDiv").hide();
 
+  //kill timer
+  stop();
+  $("#runningTimer").hide();
 
   if (arrAnswers[2].checked){
     Q1="Question 1: Correct";
@@ -78,16 +111,12 @@ function checkAnswers(){
     Q5="Question 5: Incorrect, the correct answer is 'Silence of the lambs";
   }
 
-  console.log(Q1, Q2, Q3, Q4, Q5);
 
   $("#questionsList").html("<p>" + Q1 + "<p>" + Q2 + "<p>" + Q3 + "<p>"+ Q4 + "<p>" + Q5 + "<p>" + "</p>");
 
 }
 
 function startTriviaGame(){
-
-    //show Trivia Page 2
-    //$("#h2Caption").visibility = "visible";
 
     //Show Submit Button
     $("#submitDiv").show();
@@ -101,45 +130,6 @@ function startTriviaGame(){
     //Show Questions
     showQuestions();
 }
-
-var number = 30;
-var intervalId;
-
-function run() {
-  clearInterval(intervalId);
-  intervalId = setInterval(decrement, 1000);
-}
-
-//  The decrement function.
-function decrement() {
-
-  //  Decrease number by one.
-  number--;
-
-  //  Show the number in the #show-number tag.
-  $("#runningTimer").html("<h2>" + number + " seconds remaining</h2>");
-
-  //  Once number hits zero...
-  if (number === 0) {
-    stop();
-    alert("Your time is up!");
-    checkAnswers();
-
-  }
-}
-
-  //  The stop function
-  function stop() {
-
-    //  Clears our intervalId
-    //  We just pass the name of the interval
-    //  to the clearInterval function.
-    clearInterval(intervalId);
-  }
-
-
-
-
 
 $("#submitDiv").hide();
 
